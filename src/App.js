@@ -1,23 +1,19 @@
 import logo from './logo.svg';
 import './App.css';
+import InvoicePdf from './components/invoicePdf';
+import FileSaver from 'file-saver';
+import { pdf } from '@react-pdf/renderer';
+import IeltsPdf from './components/ieltsPdf';
 
 function App() {
+  const handleDownload = async () => {
+    // const blob = await pdf(<InvoicePdf/>).toBlob();
+     const blob = await pdf(<IeltsPdf/>).toBlob();
+    FileSaver.saveAs(blob, "invoice");
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+    <button onClick={handleDownload}>download</button>
     </div>
   );
 }
